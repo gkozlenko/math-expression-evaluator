@@ -1,2 +1,2 @@
-# math-expression
+# math-expression-executor
 Math Expression Executor
