@@ -4,8 +4,8 @@ import java.util.*;
 
 /**
  * Expression Tokenizer
- *
- * Break up the expression string into valuable tokens
+ * <p>
+ * Breaks up the expression string into valuable tokens
  */
 @SuppressWarnings("WeakerAccess")
 public final class ExpressionTokenizer {
@@ -19,7 +19,7 @@ public final class ExpressionTokenizer {
         // Disable default constructor
     }
 
-    public static LinkedList<Token> tokenize(String expression) throws UnknownTokenException {
+    public static LinkedList<Token> tokenize(String expression) throws UnexpectedTokenException {
         LinkedList<Token> tokens = new LinkedList<>();
 
         StringBuilder sb = new StringBuilder();
@@ -120,7 +120,7 @@ public final class ExpressionTokenizer {
         }
     }
 
-    private static Token createValueToken(int position, String value) throws UnknownTokenException {
+    private static Token createValueToken(int position, String value) throws UnexpectedTokenException {
         if (value.charAt(0) == ':') {
             return new ParameterToken(position, value);
         } else {
@@ -133,7 +133,7 @@ public final class ExpressionTokenizer {
                 }
                 return new NumberToken(position, number);
             } catch (NumberFormatException ex) {
-                throw new UnknownTokenException(position, value);
+                throw new UnexpectedTokenException(position, value);
             }
         }
     }

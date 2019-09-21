@@ -15,7 +15,7 @@ public class ExpressionTokenizerTest {
     public ExpectedException exceptionRule = ExpectedException.none();
 
     @Test
-    public void testExpression1() throws UnknownTokenException {
+    public void testExpression1() throws UnexpectedTokenException {
         String expression = "10 + 2 * 3.5";
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
 
@@ -45,7 +45,7 @@ public class ExpressionTokenizerTest {
     }
 
     @Test
-    public void testExpression2() throws UnknownTokenException {
+    public void testExpression2() throws UnexpectedTokenException {
         String expression = "-10--20.5 / :x";
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
 
@@ -75,7 +75,7 @@ public class ExpressionTokenizerTest {
     }
 
     @Test
-    public void testExpression3() throws UnknownTokenException {
+    public void testExpression3() throws UnexpectedTokenException {
         String expression = "(:val + 11)";
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
 
@@ -105,7 +105,7 @@ public class ExpressionTokenizerTest {
     }
 
     @Test
-    public void testExpression4() throws UnknownTokenException {
+    public void testExpression4() throws UnexpectedTokenException {
         String expression = "10---10";
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
 
@@ -131,7 +131,7 @@ public class ExpressionTokenizerTest {
     }
 
     @Test
-    public void testExpression5() throws UnknownTokenException {
+    public void testExpression5() throws UnexpectedTokenException {
         String expression = "(10-)--10";
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
 
@@ -165,7 +165,7 @@ public class ExpressionTokenizerTest {
     }
 
     @Test
-    public void testExpression6() throws UnknownTokenException {
+    public void testExpression6() throws UnexpectedTokenException {
         String expression = "(10--+-10";
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
 
@@ -199,18 +199,18 @@ public class ExpressionTokenizerTest {
     }
 
     @Test
-    public void testExpression7() throws UnknownTokenException {
-        exceptionRule.expect(UnknownTokenException.class);
-        exceptionRule.expectMessage("Unknown token x at position 12");
+    public void testExpression7() throws UnexpectedTokenException {
+        exceptionRule.expect(UnexpectedTokenException.class);
+        exceptionRule.expectMessage("Unexpected token x at position 12");
 
         String expression = "(12 + 3) / (x - y)";
         ExpressionTokenizer.tokenize(expression);
     }
 
     @Test
-    public void testExpression8() throws UnknownTokenException {
-        exceptionRule.expect(UnknownTokenException.class);
-        exceptionRule.expectMessage("Unknown token 12i at position 1");
+    public void testExpression8() throws UnexpectedTokenException {
+        exceptionRule.expect(UnexpectedTokenException.class);
+        exceptionRule.expectMessage("Unexpected token 12i at position 1");
 
         String expression = "(12i + 3) / (x - y)";
         ExpressionTokenizer.tokenize(expression);

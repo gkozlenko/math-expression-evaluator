@@ -17,4 +17,5 @@ class NumberToken extends Token {
     public String toString() {
         return "" + number;
     }
+
 }
