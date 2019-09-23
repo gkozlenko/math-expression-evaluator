@@ -1,6 +1,6 @@
 package com.gkozlenko.math;
 
-class NumberToken extends Token {
+class NumberToken extends ValueToken {
 
     private Number number;
 
