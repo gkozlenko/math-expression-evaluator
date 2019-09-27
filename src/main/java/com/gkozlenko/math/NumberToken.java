@@ -9,7 +9,7 @@ class NumberToken extends ValueToken {
         this.number = number;
     }
 
-    public Number getNumber() {
+    Number getNumber() {
         return number;
     }
 

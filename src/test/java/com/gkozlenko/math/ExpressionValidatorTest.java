@@ -20,7 +20,7 @@ public class ExpressionValidatorTest {
 
     @Test
     public void testExpression02() throws ExpressionException {
-        String expression = "((12 + 13) / :x) * (17 - :y)";
+        String expression = "((12 + 13) / :x) * (17 - (:y + 4))";
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
         ExpressionValidator.validate(tokens);
     }

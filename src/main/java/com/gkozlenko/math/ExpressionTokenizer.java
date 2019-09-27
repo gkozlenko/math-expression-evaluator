@@ -7,8 +7,7 @@ import java.util.*;
  * <p>
  * Breaks up the expression string into valuable tokens
  */
-@SuppressWarnings("WeakerAccess")
-public final class ExpressionTokenizer {
+final class ExpressionTokenizer {
 
     private static final int GROUP_NONE = 0;
     private static final int GROUP_SPACE = 1;
@@ -19,7 +18,7 @@ public final class ExpressionTokenizer {
         // Disable default constructor
     }
 
-    public static LinkedList<Token> tokenize(String expression) throws UnexpectedTokenException {
+    static LinkedList<Token> tokenize(String expression) throws UnexpectedTokenException {
         LinkedList<Token> tokens = new LinkedList<>();
 
         StringBuilder sb = new StringBuilder();
@@ -57,27 +56,27 @@ public final class ExpressionTokenizer {
         }
 
         // Make negative values
-        ListIterator<Token> iter = tokens.listIterator();
+        ListIterator<Token> iterator = tokens.listIterator();
         Token lastToken = null;
-        while (iter.hasNext()) {
-            Token token = iter.next();
+        while (iterator.hasNext()) {
+            Token token = iterator.next();
             if (lastToken instanceof SubtractionOperatorToken && token instanceof NumberToken) {
                 // Remove value token and subtraction operation
-                iter.remove();
-                iter.previous();
-                iter.remove();
+                iterator.remove();
+                iterator.previous();
+                iterator.remove();
                 // Create new token with negative value
-                iter.add(createValueToken(lastToken.getPosition(), '-' + token.getToken()));
+                iterator.add(createValueToken(lastToken.getPosition(), '-' + token.getToken()));
             }
             lastToken = token;
         }
 
         // Remove space tokens
-        iter = tokens.listIterator();
-        while (iter.hasNext()) {
-            Token token = iter.next();
+        iterator = tokens.listIterator();
+        while (iterator.hasNext()) {
+            Token token = iterator.next();
             if (token instanceof SpaceToken) {
-                iter.remove();
+                iterator.remove();
             }
         }
 

@@ -7,14 +7,13 @@ import java.util.LinkedList;
  * <p>
  * Validates the correctness of the token chain
  */
-@SuppressWarnings("WeakerAccess")
-public class ExpressionValidator {
+final class ExpressionValidator {
 
     private ExpressionValidator() {
         // Disable default constructor
     }
 
-    public static void validate(LinkedList<Token> tokens) throws InvalidExpressionException, UnexpectedTokenException {
+    static void validate(LinkedList<Token> tokens) throws InvalidExpressionException, UnexpectedTokenException {
         if (tokens.isEmpty()) {
             throw new InvalidExpressionException();
         }

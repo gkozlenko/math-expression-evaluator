@@ -11,11 +11,11 @@ abstract class Token {
         this.token = token;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 
-    public String getToken() {
+    String getToken() {
         return token;
     }
 
