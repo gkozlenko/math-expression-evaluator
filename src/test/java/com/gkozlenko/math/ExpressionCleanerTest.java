@@ -73,7 +73,7 @@ public class ExpressionCleanerTest {
 
     @Test
     public void testExpression03() throws ExpressionException {
-        String expression = "(10 + ((2 * 3.5)))";
+        String expression = "(10 + (((2 * 3.5))))";
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
         ExpressionCleaner.clean(tokens);
 
@@ -95,19 +95,19 @@ public class ExpressionCleanerTest {
 
         assertTrue(tokens.get(3) instanceof NumberToken);
         assertEquals("2", tokens.get(3).getToken());
-        assertEquals(8, tokens.get(3).getPosition());
+        assertEquals(9, tokens.get(3).getPosition());
 
         assertTrue(tokens.get(4) instanceof MultiplicationOperatorToken);
         assertEquals("*", tokens.get(4).getToken());
-        assertEquals(10, tokens.get(4).getPosition());
+        assertEquals(11, tokens.get(4).getPosition());
 
         assertTrue(tokens.get(5) instanceof NumberToken);
         assertEquals("3.5", tokens.get(5).getToken());
-        assertEquals(12, tokens.get(5).getPosition());
+        assertEquals(13, tokens.get(5).getPosition());
 
         assertTrue(tokens.get(6) instanceof CloseGroupToken);
         assertEquals(")", tokens.get(6).getToken());
-        assertEquals(16, tokens.get(6).getPosition());
+        assertEquals(18, tokens.get(6).getPosition());
     }
 
     @Test
