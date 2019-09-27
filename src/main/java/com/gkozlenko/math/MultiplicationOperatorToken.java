@@ -8,4 +8,9 @@ class MultiplicationOperatorToken extends OperatorToken {
         super(position, VALUE);
     }
 
+    @Override
+    int getPriority() {
+        return HIGHEST_PRIORITY;
+    }
+
 }

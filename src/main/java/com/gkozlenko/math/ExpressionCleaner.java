@@ -55,7 +55,7 @@ final class ExpressionCleaner {
         }
     }
 
-    private static boolean removeBracketsWrappingExpression(LinkedList<Token> tokens) {
+    static boolean removeBracketsWrappingExpression(LinkedList<Token> tokens) {
         if (tokens.size() < 3) {
             return false;
         }
