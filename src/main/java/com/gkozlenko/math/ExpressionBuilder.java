@@ -14,18 +14,21 @@ final class ExpressionBuilder {
     }
 
     static Node build(LinkedList<Token> tokens) throws InvalidExpressionException {
-        // Remove wrapping brackets
-        ExpressionCleaner.removeBracketsWrappingExpression(tokens);
+        // Copy tokens in order not to change them
+        LinkedList<Token> copiedTokens = new LinkedList<>(tokens);
+
+        // Remove wrapping bracket
+        removeBracketsWrappingExpression(copiedTokens);
 
         // Corner cases
-        if (tokens.isEmpty()) {
+        if (copiedTokens.isEmpty()) {
             return null;
-        } else if (tokens.size() == 1) {
-            return new Node(tokens.getFirst());
+        } else if (copiedTokens.size() == 1) {
+            return new Node(copiedTokens.getFirst());
         }
 
         // Find the low priority operator
-        OperatorToken operator = getLowestPriorityOperator(tokens);
+        OperatorToken operator = getLowestPriorityOperator(copiedTokens);
         if (operator == null) {
             throw new InvalidExpressionException();
         }
@@ -34,7 +37,7 @@ final class ExpressionBuilder {
         LinkedList<Token> leftTokens = new LinkedList<>();
         LinkedList<Token> rightTokens = new LinkedList<>();
         LinkedList<Token> otherTokens = leftTokens;
-        for (Token token : tokens) {
+        for (Token token : copiedTokens) {
             if (token == operator) {
                 otherTokens = rightTokens;
             } else {
@@ -48,6 +51,37 @@ final class ExpressionBuilder {
         root.setRightChild(build(rightTokens));
 
         return root;
+    }
+
+    /**
+     * Remove bracket wrapping the expression
+     */
+    private static void removeBracketsWrappingExpression(LinkedList<Token> tokens) {
+        if (tokens.size() < 3) {
+            return;
+        }
+
+        if (!(tokens.getFirst() instanceof OpenGroupToken) || !(tokens.getLast() instanceof CloseGroupToken)) {
+            return;
+        }
+
+        LinkedList<Token> brackets = new LinkedList<>();
+        for (Token token : tokens) {
+            if (token instanceof OpenGroupToken) {
+                brackets.add(token);
+            } else if (token != tokens.getLast() && token instanceof CloseGroupToken) {
+                brackets.removeLast();
+            }
+        }
+
+        if (!brackets.isEmpty() && brackets.getFirst() == tokens.getFirst()) {
+            // Remove brackets
+            tokens.removeFirst();
+            tokens.removeLast();
+
+            // Try to remove wrapping brackets once again
+            removeBracketsWrappingExpression(tokens);
+        }
     }
 
     /**

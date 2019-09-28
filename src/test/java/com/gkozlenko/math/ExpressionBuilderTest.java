@@ -89,4 +89,36 @@ public class ExpressionBuilderTest {
         assertEquals("5", token.getToken());
     }
 
+    @Test
+    public void testExpression04() throws ExpressionException {
+        String expression = "((10 + 2)) * 5";
+        LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
+        Node root = ExpressionBuilder.build(tokens);
+
+        assertNotNull(root);
+
+        Token token = root.getToken();
+        assertTrue(token instanceof MultiplicationOperatorToken);
+        assertEquals(11, token.getPosition());
+
+        token = root.getLeftChild().getToken();
+        assertTrue(token instanceof AdditionOperatorToken);
+        assertEquals(5, token.getPosition());
+
+        token = root.getLeftChild().getLeftChild().getToken();
+        assertTrue(token instanceof NumberToken);
+        assertEquals(2, token.getPosition());
+        assertEquals("10", token.getToken());
+
+        token = root.getLeftChild().getRightChild().getToken();
+        assertTrue(token instanceof NumberToken);
+        assertEquals(7, token.getPosition());
+        assertEquals("2", token.getToken());
+
+        token = root.getRightChild().getToken();
+        assertTrue(token instanceof NumberToken);
+        assertEquals(13, token.getPosition());
+        assertEquals("5", token.getToken());
+    }
+
 }
