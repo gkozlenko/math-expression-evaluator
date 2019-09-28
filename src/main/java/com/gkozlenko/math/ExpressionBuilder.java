@@ -24,8 +24,8 @@ final class ExpressionBuilder {
             return new Node(tokens.getFirst());
         }
 
-        // Find the high priority operator
-        OperatorToken operator = getHighPriorityOperator(tokens);
+        // Find the low priority operator
+        OperatorToken operator = getLowestPriorityOperator(tokens);
         if (operator == null) {
             throw new InvalidExpressionException();
         }
@@ -51,9 +51,9 @@ final class ExpressionBuilder {
     }
 
     /**
-     * Get the high priority operator on the same level in the expression
+     * Get the low priority operator on the same level in the expression
      */
-    private static OperatorToken getHighPriorityOperator(LinkedList<Token> tokens) {
+    private static OperatorToken getLowestPriorityOperator(LinkedList<Token> tokens) {
         OperatorToken operator = null;
 
         boolean inBrackets = false;
@@ -76,12 +76,8 @@ final class ExpressionBuilder {
                 } else if (token instanceof OperatorToken) {
                     OperatorToken tmp = (OperatorToken) token;
                     // Compare operators priority
-                    if (operator == null || tmp.getPriority() < operator.getPriority()) {
+                    if (operator == null || tmp.getPriority() > operator.getPriority()) {
                         operator = tmp;
-                    }
-                    // We've found an operator with the highest priority
-                    if (operator.getPriority() == OperatorToken.HIGHEST_PRIORITY) {
-                        break;
                     }
                 }
             }

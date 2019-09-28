@@ -3,6 +3,7 @@ package com.gkozlenko.math;
 class SubtractionOperatorToken extends OperatorToken {
 
     private static final String VALUE = "-";
+    private static final int PRIORITY = 2;
 
     SubtractionOperatorToken(int position) {
         super(position, VALUE);
@@ -10,7 +11,7 @@ class SubtractionOperatorToken extends OperatorToken {
 
     @Override
     int getPriority() {
-        return HIGHEST_PRIORITY + 1;
+        return PRIORITY;
     }
 
 }

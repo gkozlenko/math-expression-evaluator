@@ -3,6 +3,7 @@ package com.gkozlenko.math;
 class DivisionOperatorToken extends OperatorToken {
 
     private static final String VALUE = "/";
+    private static final int PRIORITY = 1;
 
     DivisionOperatorToken(int position) {
         super(position, VALUE);
@@ -10,7 +11,7 @@ class DivisionOperatorToken extends OperatorToken {
 
     @Override
     int getPriority() {
-        return HIGHEST_PRIORITY;
+        return PRIORITY;
     }
 
 }
