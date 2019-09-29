@@ -57,10 +57,12 @@ final class ExpressionTokenizer {
 
         // Make negative values
         ListIterator<Token> iterator = tokens.listIterator();
+        Token lastLastToken = null;
         Token lastToken = null;
         while (iterator.hasNext()) {
             Token token = iterator.next();
-            if (lastToken instanceof SubtractionOperatorToken && token instanceof NumberToken) {
+            if ((lastLastToken == null || lastLastToken instanceof OperatorToken) &&
+                    lastToken instanceof SubtractionOperatorToken && token instanceof NumberToken) {
                 // Remove value token and subtraction operation
                 iterator.remove();
                 iterator.previous();
@@ -68,6 +70,7 @@ final class ExpressionTokenizer {
                 // Create new token with negative value
                 iterator.add(createValueToken(lastToken.getPosition(), '-' + token.getToken()));
             }
+            lastLastToken = lastToken;
             lastToken = token;
         }
 

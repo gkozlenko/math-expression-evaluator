@@ -225,4 +225,26 @@ public class ExpressionTokenizerTest {
         assertEquals(0, tokens.size());
     }
 
+    @Test
+    public void testExpression10() throws ExpressionException {
+        String expression = "10-2";
+        LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
+
+        // Validate number of tokens
+        assertEquals(3, tokens.size());
+
+        // Validate tokens themselves
+        assertTrue(tokens.get(0) instanceof NumberToken);
+        assertEquals("10", tokens.get(0).getToken());
+        assertEquals(0, tokens.get(0).getPosition());
+
+        assertTrue(tokens.get(1) instanceof SubtractionOperatorToken);
+        assertEquals("-", tokens.get(1).getToken());
+        assertEquals(2, tokens.get(1).getPosition());
+
+        assertTrue(tokens.get(2) instanceof NumberToken);
+        assertEquals("2", tokens.get(2).getToken());
+        assertEquals(3, tokens.get(2).getPosition());
+    }
+
 }
