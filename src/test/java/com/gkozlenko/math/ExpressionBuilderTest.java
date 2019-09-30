@@ -121,4 +121,36 @@ public class ExpressionBuilderTest {
         assertEquals("5", token.getToken());
     }
 
+    @Test
+    public void testExpression05() throws ExpressionException {
+        String expression = "3 - 2 - 1";
+        LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
+        Node root = ExpressionBuilder.build(tokens);
+
+        assertNotNull(root);
+
+        Token token = root.getToken();
+        assertTrue(token instanceof SubtractionOperatorToken);
+        assertEquals(6, token.getPosition());
+
+        token = root.getLeftChild().getToken();
+        assertTrue(token instanceof SubtractionOperatorToken);
+        assertEquals(2, token.getPosition());
+
+        token = root.getLeftChild().getLeftChild().getToken();
+        assertTrue(token instanceof NumberToken);
+        assertEquals(0, token.getPosition());
+        assertEquals("3", token.getToken());
+
+        token = root.getLeftChild().getRightChild().getToken();
+        assertTrue(token instanceof NumberToken);
+        assertEquals(4, token.getPosition());
+        assertEquals("2", token.getToken());
+
+        token = root.getRightChild().getToken();
+        assertTrue(token instanceof NumberToken);
+        assertEquals(8, token.getPosition());
+        assertEquals("1", token.getToken());
+    }
+
 }

@@ -14,4 +14,14 @@ class DivisionOperatorToken extends OperatorToken {
         return PRIORITY;
     }
 
+    @Override
+    Number calculate(long leftValue, long rightValue) {
+        return 1.0D * leftValue / rightValue;
+    }
+
+    @Override
+    Number calculate(double leftValue, double rightValue) {
+        return leftValue / rightValue;
+    }
+
 }

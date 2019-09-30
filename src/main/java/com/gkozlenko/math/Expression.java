@@ -1,6 +1,8 @@
 package com.gkozlenko.math;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Math Expression
@@ -11,9 +13,40 @@ public class Expression {
 
     private Node root;
 
+    private Map<String, Number> parameters = new HashMap<>();
+
     Expression(LinkedList<Token> tokens, Node root) {
         this.tokens = tokens;
         this.root = root;
+    }
+
+    /**
+     * Calculate the expression
+     *
+     * @return Expression result
+     */
+    @SuppressWarnings("WeakerAccess")
+    public Number calculate() throws UndefinedParameterException {
+        Number result = root.calculate(parameters);
+        if (result.longValue() == result.doubleValue()) {
+            return result.longValue();
+        } else {
+            return result.doubleValue();
+        }
+    }
+
+    /**
+     * Set parameter value
+     *
+     * @param parameter Parameter name
+     * @param value     Parameter value
+     */
+    @SuppressWarnings("unused")
+    public void setParameter(String parameter, Number value) {
+        if (parameter.charAt(0) != ':') {
+            parameter = ":" + parameter;
+        }
+        parameters.put(parameter, value);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.gkozlenko.math;
 class AdditionOperatorToken extends OperatorToken {
 
     private static final String VALUE = "+";
-    private static final int PRIORITY = 2;
+    private static final int PRIORITY = 4;
 
     AdditionOperatorToken(int position) {
         super(position, VALUE);
@@ -12,6 +12,16 @@ class AdditionOperatorToken extends OperatorToken {
     @Override
     int getPriority() {
         return PRIORITY;
+    }
+
+    @Override
+    Number calculate(long leftValue, long rightValue) {
+        return leftValue + rightValue;
+    }
+
+    @Override
+    Number calculate(double leftValue, double rightValue) {
+        return leftValue + rightValue;
     }
 
 }

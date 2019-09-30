@@ -1,5 +1,7 @@
 package com.gkozlenko.math;
 
+import java.util.Map;
+
 class Node {
 
     private Node leftChild;
@@ -30,6 +32,22 @@ class Node {
 
     Token getToken() {
         return token;
+    }
+
+    Number calculate(Map<String, Number> parameters) throws UndefinedParameterException {
+        if (token instanceof OperatorToken) {
+            return ((OperatorToken) token).calculate(leftChild.calculate(parameters), rightChild.calculate(parameters));
+        } else if (token instanceof NumberToken) {
+            return ((NumberToken) token).getNumber();
+        } else if (token instanceof ParameterToken) {
+            if (parameters.containsKey(token.getToken())) {
+                return parameters.get(token.getToken());
+            } else {
+                throw new UndefinedParameterException((ParameterToken) token);
+            }
+        }
+
+        return null;
     }
 
 }
