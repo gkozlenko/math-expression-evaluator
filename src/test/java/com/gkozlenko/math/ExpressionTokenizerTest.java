@@ -247,4 +247,42 @@ public class ExpressionTokenizerTest {
         assertEquals(3, tokens.get(2).getPosition());
     }
 
+    @Test
+    public void testExpression11() throws ExpressionException {
+        String expression = "(-1-  -1)  -1";
+        LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
+
+        // Validate number of tokens
+        assertEquals(7, tokens.size());
+
+        // Validate tokens themselves
+        assertTrue(tokens.get(0) instanceof OpenGroupToken);
+        assertEquals("(", tokens.get(0).getToken());
+        assertEquals(0, tokens.get(0).getPosition());
+
+        assertTrue(tokens.get(1) instanceof NumberToken);
+        assertEquals("-1", tokens.get(1).getToken());
+        assertEquals(1, tokens.get(1).getPosition());
+
+        assertTrue(tokens.get(2) instanceof SubtractionOperatorToken);
+        assertEquals("-", tokens.get(2).getToken());
+        assertEquals(3, tokens.get(2).getPosition());
+
+        assertTrue(tokens.get(3) instanceof NumberToken);
+        assertEquals("-1", tokens.get(3).getToken());
+        assertEquals(6, tokens.get(3).getPosition());
+
+        assertTrue(tokens.get(4) instanceof CloseGroupToken);
+        assertEquals(")", tokens.get(4).getToken());
+        assertEquals(8, tokens.get(4).getPosition());
+
+        assertTrue(tokens.get(5) instanceof SubtractionOperatorToken);
+        assertEquals("-", tokens.get(5).getToken());
+        assertEquals(11, tokens.get(5).getPosition());
+
+        assertTrue(tokens.get(6) instanceof NumberToken);
+        assertEquals("1", tokens.get(6).getToken());
+        assertEquals(12, tokens.get(6).getPosition());
+    }
+
 }

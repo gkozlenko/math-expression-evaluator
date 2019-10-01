@@ -42,6 +42,12 @@ public class ExpressionTest {
     }
 
     @Test
+    public void testToString06() throws ExpressionException {
+        assertEquals("(-1 - -1) - 1",
+            ExpressionCompiler.compile("(-1-  -1)  -1").toString());
+    }
+
+    @Test
     public void testParameters01() throws ExpressionException {
         Expression expression = ExpressionCompiler.compile("1 + :param");
 
