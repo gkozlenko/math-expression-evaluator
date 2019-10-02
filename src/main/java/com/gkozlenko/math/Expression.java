@@ -15,9 +15,23 @@ public class Expression {
 
     private Map<String, Number> parameters = new HashMap<>();
 
-    Expression(LinkedList<Token> tokens, Node root) {
+    private Expression(LinkedList<Token> tokens, Node root) {
         this.tokens = tokens;
         this.root = root;
+    }
+
+    /**
+     * Compile the expression
+     *
+     * @param expression Expression string
+     * @return Expression object
+     */
+    public static Expression compile(String expression) throws UnexpectedTokenException, InvalidExpressionException {
+        LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
+        ExpressionValidator.validate(tokens);
+        Node root = ExpressionBuilder.build(tokens);
+
+        return new Expression(tokens, root);
     }
 
     /**
@@ -41,7 +55,7 @@ public class Expression {
      * @param parameter Parameter name
      * @param value     Parameter value
      */
-    @SuppressWarnings("unused")
+    @SuppressWarnings("WeakerAccess")
     public void setParameter(String parameter, Number value) {
         if (parameter.charAt(0) != ':') {
             parameter = ":" + parameter;
