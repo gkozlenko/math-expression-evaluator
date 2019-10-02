@@ -26,6 +26,7 @@ public class Expression {
      * @param expression Expression string
      * @return Expression object
      */
+    @SuppressWarnings("WeakerAccess")
     public static Expression compile(String expression) throws UnexpectedTokenException, InvalidExpressionException {
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
         ExpressionValidator.validate(tokens);
