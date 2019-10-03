@@ -26,7 +26,7 @@ System.out.println(expression.calculate()); // Outputs 19.25
 ## Supported symbols
 
 | Symbol | Explanation | Example |
-| :---: | --- |
+| :---: | --- | --- |
 | **+** | Addition operator | 1 + 2 results 3 |
 | **-** | Subtraction operator | 10 - 3 results 7 |
 | **\*** | Multiplication operator | 5 * 2 results 10 |
