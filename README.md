@@ -1,5 +1,6 @@
 # math-expression-evaluator
 
+[![Build Status](https://travis-ci.org/gkozlenko/math-expression-evaluator.svg?branch=master)](https://travis-ci.org/gkozlenko/math-expression-evaluator)
 [![GitHub License](https://img.shields.io/github/license/gkozlenko/math-expression-evaluator.svg)](https://github.com/gkozlenko/math-expression-evaluator/blob/master/LICENSE)
 
 Parses, compiles and evaluates mathematical expressions
