@@ -1,4 +1,7 @@
 # math-expression-evaluator
+
+[![GitHub License](https://img.shields.io/github/license/gkozlenko/math-expression-evaluator.svg)](https://github.com/gkozlenko/math-expression-evaluator/blob/master/LICENSE)
+
 Parses, compiles and evaluates mathematical expressions
 
 ## Examples
@@ -16,7 +19,7 @@ expression.setParameter(":x", 2).setParameter(":y", 3);
 // Calculate
 System.out.println(expression.calculate()); // Outputs 64
 
-// Set another parameters
+// Set other parameters
 expression.setParameter(":x", 4.5).setParameter(":y", -1.5);
 
 // Calculate again

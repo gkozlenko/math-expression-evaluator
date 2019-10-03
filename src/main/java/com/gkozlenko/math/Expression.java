@@ -25,6 +25,8 @@ public class Expression {
      *
      * @param expression Expression string
      * @return Expression object
+     * @throws UnexpectedTokenException
+     * @throws InvalidExpressionException
      */
     @SuppressWarnings("WeakerAccess")
     public static Expression compile(String expression) throws UnexpectedTokenException, InvalidExpressionException {
@@ -39,6 +41,7 @@ public class Expression {
      * Calculate the expression
      *
      * @return Expression result
+     * @throws UndefinedParameterException
      */
     @SuppressWarnings("WeakerAccess")
     public Number calculate() throws UndefinedParameterException {
