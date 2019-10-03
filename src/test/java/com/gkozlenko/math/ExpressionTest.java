@@ -73,7 +73,7 @@ public class ExpressionTest {
         assertEquals(0L, expression.calculate());
 
         expression.setParameter(":z", -1.4);
-        assertEquals(4.4D, expression.calculate());
+        assertEquals(4.4D, expression.calculate().doubleValue(), 0.0001D);
     }
 
     @Test
@@ -90,7 +90,9 @@ public class ExpressionTest {
 
     @Test
     public void testParameters05() throws ExpressionException {
-        assertEquals(12.5D, Expression.compile(":param").setParameter(":param", 12.5).calculate());
+        assertEquals(12.5D,
+            Expression.compile(":param").setParameter(":param", 12.5).calculate().doubleValue(),
+            0.0001D);
     }
 
     @Test
@@ -101,7 +103,7 @@ public class ExpressionTest {
         assertEquals(64L, expression.calculate());
 
         expression.setParameter(":x", 4.5).setParameter(":y", -1.5);
-        assertEquals(19.25D, expression.calculate());
+        assertEquals(19.25D, expression.calculate().doubleValue(), 0.0001D);
     }
 
     @Test
@@ -131,7 +133,9 @@ public class ExpressionTest {
 
     @Test
     public void testCalculate06() throws ExpressionException {
-        assertEquals(21.5D, Expression.compile("10 * 2 + 3 / 2").calculate());
+        assertEquals(21.5D,
+            Expression.compile("10 * 2 + 3 / 2").calculate().doubleValue(),
+            0.0001D);
     }
 
     @Test
@@ -172,6 +176,25 @@ public class ExpressionTest {
     @Test
     public void testCalculate14() throws ExpressionException {
         assertEquals(4L, Expression.compile("16 / 2 / 2 / 2 * 2").calculate());
+    }
+
+    @Test
+    public void testCalculate15() throws ExpressionException {
+        assertEquals(13L, Expression.compile("10 + 16 / 2 / 2 / 2 * 2 - 6 / 2 / 3").calculate());
+    }
+
+    @Test
+    public void testCalculate16() throws ExpressionException {
+        assertEquals(5.5D,
+            Expression.compile("(10 + 16) / 2 / 2 / 2 * 2 - 6 / 2 / 3").calculate().doubleValue(),
+            0.0001D);
+    }
+
+    @Test
+    public void testCalculate17() throws ExpressionException {
+        assertEquals(-2.1666D,
+            Expression.compile("(10 + 16) / 2 / 2 / 2 * (2 - 6) / 2 / 3").calculate().doubleValue(),
+            0.0001D);
     }
 
 }
