@@ -55,13 +55,16 @@ public class Expression {
      *
      * @param parameter Parameter name
      * @param value     Parameter value
+     * @return Expression object
      */
     @SuppressWarnings("WeakerAccess")
-    public void setParameter(String parameter, Number value) {
+    public Expression setParameter(String parameter, Number value) {
         if (parameter.charAt(0) != ':') {
             parameter = ":" + parameter;
         }
         parameters.put(parameter, value);
+
+        return this;
     }
 
     @Override

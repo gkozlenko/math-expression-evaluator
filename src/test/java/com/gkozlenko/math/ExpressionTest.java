@@ -89,6 +89,11 @@ public class ExpressionTest {
     }
 
     @Test
+    public void testParameters05() throws ExpressionException {
+        assertEquals(12.5D, Expression.compile(":param").setParameter(":param", 12.5).calculate());
+    }
+
+    @Test
     public void testCalculate01() throws ExpressionException {
         assertEquals(2L, Expression.compile("1 + 1").calculate());
     }
