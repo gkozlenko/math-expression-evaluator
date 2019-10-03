@@ -94,6 +94,17 @@ public class ExpressionTest {
     }
 
     @Test
+    public void testParameters06() throws ExpressionException {
+        Expression expression = Expression.compile("(10 - :x) * (5 + :y)");
+
+        expression.setParameter(":x", 2).setParameter(":y", 3);
+        assertEquals(64L, expression.calculate());
+
+        expression.setParameter(":x", 4.5).setParameter(":y", -1.5);
+        assertEquals(19.25D, expression.calculate());
+    }
+
+    @Test
     public void testCalculate01() throws ExpressionException {
         assertEquals(2L, Expression.compile("1 + 1").calculate());
     }
