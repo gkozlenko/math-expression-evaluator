@@ -197,4 +197,19 @@ public class ExpressionTest {
             0.0001D);
     }
 
+    @Test
+    public void testCalculate18() throws ExpressionException {
+        assertEquals(Double.POSITIVE_INFINITY, Expression.compile("1 / 0 + 3").calculate());
+    }
+
+    @Test
+    public void testCalculate19() throws ExpressionException {
+        assertEquals(Double.NEGATIVE_INFINITY, Expression.compile("-1 / 0 + 3").calculate());
+    }
+
+    @Test
+    public void testCalculate20() throws ExpressionException {
+        assertEquals(Double.POSITIVE_INFINITY, Expression.compile("100 / (2 - 2)").calculate());
+    }
+
 }
