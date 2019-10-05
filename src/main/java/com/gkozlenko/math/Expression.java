@@ -29,7 +29,7 @@ public class Expression {
      * @throws InvalidExpressionException
      */
     @SuppressWarnings("WeakerAccess")
-    public static Expression compile(String expression) throws UnexpectedTokenException, InvalidExpressionException {
+    public static Expression parse(String expression) throws UnexpectedTokenException, InvalidExpressionException {
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
         ExpressionValidator.validate(tokens);
         Node root = ExpressionBuilder.build(tokens);

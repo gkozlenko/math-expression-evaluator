@@ -12,7 +12,7 @@ Parses, compiles and evaluates mathematical expressions
 import com.gkozlenko.math.Expression;
 
 // Compile the expression
-Expression expression = Expression.compile("(10 - :x) * (5 + :y)");
+Expression expression = Expression.parse("(10 - :x) * (5 + :y)");
 
 // Set parameters
 expression.setParameter(":x", 2).setParameter(":y", 3);
