@@ -36,7 +36,7 @@ final class ExpressionValidator {
 
         if (!brackets.isEmpty()) {
             Token token = brackets.getFirst();
-            throw new UnexpectedTokenException(token.getPosition(), token.getToken());
+            throw new UnexpectedTokenException(token);
         }
     }
 
