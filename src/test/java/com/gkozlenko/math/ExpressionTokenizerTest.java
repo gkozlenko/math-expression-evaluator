@@ -1,18 +1,12 @@
 package com.gkozlenko.math;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ExpressionTokenizerTest {
-
-    @Rule
-    public ExpectedException exceptionRule = ExpectedException.none();
 
     @Test
     public void testExpression01() throws ExpressionException {
@@ -199,21 +193,25 @@ public class ExpressionTokenizerTest {
     }
 
     @Test
-    public void testExpression07() throws ExpressionException {
-        exceptionRule.expect(UnexpectedTokenException.class);
-        exceptionRule.expectMessage("Unexpected token x at position 12");
-
+    public void testExpression07() {
         String expression = "(12 + 3) / (x - y)";
-        ExpressionTokenizer.tokenize(expression);
+
+        Exception exception = assertThrows(
+            UnexpectedTokenException.class,
+            () -> ExpressionTokenizer.tokenize(expression)
+        );
+        assertEquals("Unexpected token x at position 12", exception.getMessage());
     }
 
     @Test
-    public void testExpression08() throws UnexpectedTokenException {
-        exceptionRule.expect(UnexpectedTokenException.class);
-        exceptionRule.expectMessage("Unexpected token 12i at position 1");
-
+    public void testExpression08() {
         String expression = "(12i + 3) / (x - y)";
-        ExpressionTokenizer.tokenize(expression);
+
+        Exception exception = assertThrows(
+            UnexpectedTokenException.class,
+            () -> ExpressionTokenizer.tokenize(expression)
+        );
+        assertEquals("Unexpected token 12i at position 1", exception.getMessage());
     }
 
     @Test

@@ -1,15 +1,11 @@
 package com.gkozlenko.math;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ExpressionTest {
-
-    @Rule
-    public ExpectedException exceptionRule = ExpectedException.none();
 
     @Test
     public void testToString01() throws ExpressionException {
@@ -78,14 +74,13 @@ public class ExpressionTest {
 
     @Test
     public void testParameters04() throws ExpressionException {
-        exceptionRule.expect(UndefinedParameterException.class);
-        exceptionRule.expectMessage("Undefined parameter :y at position 5");
-
         Expression expression = Expression.parse(":x + :y - :z");
 
         expression.setParameter(":x", 1);
         expression.setParameter(":z", 3);
-        expression.calculate();
+
+        Exception exception = assertThrows(UndefinedParameterException.class, expression::calculate);
+        assertEquals("Undefined parameter :y at position 5", exception.getMessage());
     }
 
     @Test
