@@ -1,7 +1,7 @@
 # math-expression-evaluator
 
 [![build status](https://github.com/gkozlenko/math-expression-evaluator/actions/workflows/build.yml/badge.svg)](https://github.com/gkozlenko/math-expression-evaluator/actions/workflows/build.yml)
-[![test coverage](https://gkozlenko.github.io/math-expression-evaluator/jacoco.svg)](https://github.com/gkozlenko/math-expression-evaluator/actions/workflows/build.yml)
+[![test coverage](https://gkozlenko.github.io/math-expression-evaluator/pages/jacoco.svg)](https://github.com/gkozlenko/math-expression-evaluator/actions/workflows/build.yml)
 [![license](https://img.shields.io/github/license/gkozlenko/math-expression-evaluator.svg)](https://github.com/gkozlenko/math-expression-evaluator/blob/master/LICENSE)
 
 Parses, compiles and evaluates mathematical expressions
