@@ -2,13 +2,13 @@ package com.gkozlenko.math;
 
 import java.util.Map;
 
-class Node {
+final class Node {
 
     private Node leftChild;
 
     private Node rightChild;
 
-    private Token token;
+    private final Token token;
 
     Node(Token token) {
         this.token = token;

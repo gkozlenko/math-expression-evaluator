@@ -153,4 +153,25 @@ public class ExpressionBuilderTest {
         assertEquals("1", token.getToken());
     }
 
+    @Test
+    public void testExpression06() throws ExpressionException {
+        String expression = "";
+        LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
+        Node root = ExpressionBuilder.build(tokens);
+
+        assertNull(root);
+    }
+
+    @Test
+    public void testExpression07() throws ExpressionException {
+        String expression = "10 20";
+        LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
+
+        Exception exception = assertThrows(
+            InvalidExpressionException.class,
+            () -> ExpressionBuilder.build(tokens)
+        );
+        assertEquals("Invalid expression", exception.getMessage());
+    }
+
 }

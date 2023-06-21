@@ -1,11 +1,11 @@
 package com.gkozlenko.math;
 
-class NumberToken extends ValueToken {
+final class NumberToken extends ValueToken {
 
-    private Number number;
+    private final Number number;
 
     NumberToken(int position, Number number) {
-        super(position, "" + number);
+        super(position, String.valueOf(number));
         this.number = number;
     }
 
@@ -15,7 +15,7 @@ class NumberToken extends ValueToken {
 
     @Override
     public String toString() {
-        return "" + number;
+        return String.valueOf(number);
     }
 
 }

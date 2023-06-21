@@ -1,6 +1,6 @@
 package com.gkozlenko.math;
 
-class DivisionOperatorToken extends OperatorToken {
+final class DivisionOperatorToken extends OperatorToken {
 
     private static final String VALUE = "/";
     private static final int PRIORITY = 1;

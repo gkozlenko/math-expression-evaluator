@@ -7,13 +7,13 @@ import java.util.Map;
 /**
  * Math Expression
  */
-public class Expression {
+final public class Expression {
 
-    private LinkedList<Token> tokens;
+    private final LinkedList<Token> tokens;
 
-    private Node root;
+    private final Node root;
 
-    private Map<String, Number> parameters = new HashMap<>();
+    private final Map<String, Number> parameters = new HashMap<>();
 
     private Expression(LinkedList<Token> tokens, Node root) {
         this.tokens = tokens;
@@ -28,7 +28,6 @@ public class Expression {
      * @throws UnexpectedTokenException
      * @throws InvalidExpressionException
      */
-    @SuppressWarnings("WeakerAccess")
     public static Expression parse(String expression) throws UnexpectedTokenException, InvalidExpressionException {
         LinkedList<Token> tokens = ExpressionTokenizer.tokenize(expression);
         ExpressionValidator.validate(tokens);
@@ -43,7 +42,6 @@ public class Expression {
      * @return Expression result
      * @throws UndefinedParameterException
      */
-    @SuppressWarnings("WeakerAccess")
     public Number calculate() throws UndefinedParameterException {
         Number result = root.calculate(parameters);
         if (result.longValue() == result.doubleValue()) {
@@ -60,7 +58,6 @@ public class Expression {
      * @param value     Parameter value
      * @return Expression object
      */
-    @SuppressWarnings("WeakerAccess")
     public Expression setParameter(String parameter, Number value) {
         if (parameter.charAt(0) != ':') {
             parameter = ":" + parameter;
@@ -72,14 +69,11 @@ public class Expression {
 
     @Override
     public String toString() {
-        if (tokens.isEmpty()) {
-            return "";
-        }
-
         StringBuilder sb = new StringBuilder();
+
         for (Token token : tokens) {
             // Remove a space before the close bracket
-            if (token instanceof CloseGroupToken && sb.length() > 0 && sb.charAt(sb.length() - 1) == ' ') {
+            if (token instanceof CloseGroupToken) {
                 sb.setLength(sb.length() - 1);
             }
 
