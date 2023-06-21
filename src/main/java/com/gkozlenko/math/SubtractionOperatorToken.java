@@ -1,6 +1,6 @@
 package com.gkozlenko.math;
 
-class SubtractionOperatorToken extends OperatorToken {
+final class SubtractionOperatorToken extends OperatorToken {
 
     private static final String VALUE = "-";
     private static final int PRIORITY = 3;

@@ -1,6 +1,6 @@
 package com.gkozlenko.math;
 
-class MultiplicationOperatorToken extends OperatorToken {
+final class MultiplicationOperatorToken extends OperatorToken {
 
     private static final String VALUE = "*";
     private static final int PRIORITY = 2;

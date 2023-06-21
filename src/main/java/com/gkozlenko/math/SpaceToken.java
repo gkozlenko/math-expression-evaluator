@@ -1,6 +1,6 @@
 package com.gkozlenko.math;
 
-class SpaceToken extends Token {
+final class SpaceToken extends Token {
 
     private static final String VALUE = " ";
 

@@ -1,6 +1,6 @@
 package com.gkozlenko.math;
 
-class AdditionOperatorToken extends OperatorToken {
+final class AdditionOperatorToken extends OperatorToken {
 
     private static final String VALUE = "+";
     private static final int PRIORITY = 4;

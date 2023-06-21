@@ -2,9 +2,9 @@ package com.gkozlenko.math;
 
 abstract class Token {
 
-    private int position;
+    private final int position;
 
-    private String token;
+    private final String token;
 
     Token(int position, String token) {
         this.position = position;

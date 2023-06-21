@@ -1,6 +1,6 @@
 package com.gkozlenko.math;
 
-class OpenGroupToken extends GroupToken {
+final class OpenGroupToken extends GroupToken {
 
     private static final String VALUE = "(";
 
